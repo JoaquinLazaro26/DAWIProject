@@ -1,5 +1,6 @@
 package com.inscripcion.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -7,7 +8,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="tb_enlace")
 
-public class Enlace {
+public class Enlace{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

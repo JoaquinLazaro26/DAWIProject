@@ -28,7 +28,10 @@ public class InscripcionesService {
 	public Inscripcion buscarPorID(String cod) {
 		return repo.findById(cod).orElse(null);
 	}
-	
+	public Inscripcion buscarInscripcionesPorEstado(String estado)
+	{
+		return repo.buscarInscripcionEstado(estado);
+	}
 	
 	
 }

@@ -126,61 +126,47 @@
 			</div>
 		
 		
-			<!-- begin #modal-dialog : MODAL ALUMNO-->
+			<!-- begin #modal-dialog : MODAL BOLETA-->
 			<div class="modal fade" id="modalAlumno" data-backdrop="static" 
 							data-keyboard="false" tabindex="-1" 
 							aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-login modal-lg" >					
 							<div class="modal-content">
 								<div class="modal-header bg-blue-darker">
-									<h4 class="modal-title text-white">ALUMNO</h4>
+									<h4 class="modal-title text-white">BOLETA</h4>
 								</div>
 								<div class="modal-body">
-									<form method="POST" id="idRegistra" action="/alumno/registrar">	
-										<input type="hidden" id="idCodigo" name="codigo" value="0">
+									<form method="POST" id="idRegistra" action="/ordenpago/pagar">	
 										<div class="container">
 											<div class="row">
 												<div class="form-group has-feedback col-md-12">
-														<label for="exampleInputEmail1"><b>Nombre</b></label><br>		
+														<label for="exampleInputEmail1"><b>Código de Boleta</b></label><br>		
 														<i class="fas fa-file-signature form-control-feedback2"></i>	
-														<input type="text" class="form-control"  id="idNombre" placeholder="Ingresar nombre" name="nomAlumno">																										
+														<input type="text" class="form-control"  id="idCodigo"  name="codigo">																										
 												</div>
-												<div class="form-group has-feedback col-md-12">
-														<label for="exampleInputEmail1"><b>Apellido</b></label><br>		
-														<i class="fas fa-file-signature form-control-feedback2"></i>	
-														<input type="text" class="form-control"  id="idApellido" placeholder="Ingresar Apellido" name="apeAlumno">																										
-												</div>
-											
-												<div class="form-group has-feedback col-md-4">	
-													<label for="exampleInputEmail1" class="text-center"><b>Fecha nacimiento</b></label><br>
-												    <i class="fas fa-calendar-week form-control-feedback2"></i>
-												    <input type="text" style="background-color:#aed6f1" class="form-control" id="idFecha" name="fecNacimiento"
-												    													   placeholder="YYYY-MM-DD" autocomplete="off" >
-							
-											    </div>
-											    
-													<div class="form-group has-feedback col-md-12">
-														<label for="exampleInputEmail1"><b>Correo</b></label><br>		
-														<i class="fas fa-file-signature form-control-feedback2"></i>	
-														<input type="text" class="form-control"  id="idCorreo" placeholder="Ingresar nombre" name="correoAlu">																										
-												</div>
-											    
-											    <div class="form-group has-feedback col-md-6">	
-														<label for="exampleInputEmail1"><b>País</b></label><br>
+												<div class="form-group has-feedback col-md-6">	
+														<label for="exampleInputEmail1"><b>Código de Inscripción</b></label><br>
 												        <i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
-													    <select class="form-control" id="idPais" name="pais">
-													      <option value=" ">[Seleccione País]</option>
-													      <option th:each="data:${listaPaises}"   
-													      		th:utext="${data.namePais}"
-													      		th:value="${data.codPais}"
+													    <select class="form-control" id="idInscripciones" name="inscripcion">
+													      <option value=" ">[Seleccione Inscripción]</option>
+													      <option th:each="data:${inscripciones}"   
+													      		th:utext="${data.codigo}"
+													      		th:value="${data.codigo}"
 													      />
 													    </select>
 												 </div>
+													<div class="form-group has-feedback col-md-12">
+														<label for="exampleInputEmail1"><b>Monto</b></label><br>		
+														<i class="fas fa-file-signature form-control-feedback2"></i>	
+														<input type="text" class="form-control"  id="idMonto" placeholder="Ingresar monto" name="monto">																										
+												</div>
+											    
+											    
 											
 											</div>
 										</div>								
 										<div class="col-md-12 text-center mt-4"> 										
-											<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i> Registrar</button>
+											<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i> Pagar</button>
 											<button type="button" id="btn-cerrar" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Cancelar</button>
 										</div> 																								
 									</form>

@@ -27,7 +27,7 @@ public class OrdenPagoController {
 	
 	@RequestMapping("/lista")
 	private String index(Model model) {
-		model.addAttribute("inscripciones", serIns.listarInscripciones());
+		model.addAttribute("inscripciones", serIns.buscarInscripcionesPorEstado("PENDIENTE DE PAGO"));
 		model.addAttribute("ordenes", serOrden.listarOrdenPago());
 		
 		return "ordenpago";
@@ -38,52 +38,38 @@ public class OrdenPagoController {
 			return serOrden.buscarPorCodigo(cod);
 	}
 	
-	
-	
-	
-	/*
-	@RequestMapping("/grabar")
+	@RequestMapping("/pagar")
 	private String grabar(
-			@RequestParam("codigo") Integer cod,
+			@RequestParam("codigo") String cod,
 			@RequestParam("monto") double monto,
-			@RequestParam("fecha") String fec,
-			@RequestParam("estado") int codestado,
+			@RequestParam("inscripcion") String inscripcion,
 			RedirectAttributes redirect){
 		try {
 			//
-			OrdenPago i = new OrdenPago();
-			i.setCodigo(cod);
-			i.setFecha(LocalDate.now());
-			i.setMonto(monto);
+			OrdenPago o = new OrdenPago();
+			o.setCodigo(cod);
+			o.setFecha(LocalDate.now());
+			o.setMonto(monto);
+			o.setEstado("PAGADO");
 			
+			Inscripcion i = new Inscripcion();
+			i.setCodigo(inscripcion);
+			serIns.buscarPorID(inscripcion).setEstado("PAGADO");
+			o.setInscripciones(i);
 			
-			//
-			Alumno a = new Alumno();
-			a.setCodigo(codAlu);
-			i.setDniSAlumno(a);
-			//
-			i.setFechaIns(LocalDate.parse(fec));
-			i.setEstado(estado);
-			if(cod=="") {
-				serIns.registrar(i);
-				//
-				redirect.addFlashAttribute("MENSAJE","Inscripcion registrada");
-			} else {
-				i.setCodigo(cod);
-				serIns.actualizar(i);
-				//
-				redirect.addFlashAttribute("MENSAJE","Inscripcion actualizada");
-			}
+			serOrden.grabar(o);
+
+			redirect.addFlashAttribute("MENSAJE","Boleta pagada");
 			
 		} catch (Exception e) {
 			redirect.addFlashAttribute("MENSAJE","Error en el registro");
 			e.printStackTrace();
 		}
 		
-		return "redirect:/inscripcion/lista";
+		return "redirect:/ordenpago/lista";
 	}
 
-*/
+
 
 
 }
