@@ -42,7 +42,7 @@ public class SecurityConfig {
 		return http.build();*/
 		
 		http.csrf().disable().authorizeHttpRequests().
-			requestMatchers("/usuario/**").permitAll().and().
+			requestMatchers("/usuario/**","/static/**","resources/img/**","resources/css/**").permitAll().and().
 			authorizeHttpRequests().requestMatchers("/alumno/**","/Carrera/**","/inscripcion/**","/ordenpago/**","/resources/**").authenticated().and()
 			.formLogin().loginPage("/usuario/login").defaultSuccessUrl("/usuario/principal");
 		return http.build();
