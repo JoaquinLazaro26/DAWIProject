@@ -29,6 +29,7 @@ public class OrdenPagoController {
 	private String index(Model model) {
 		model.addAttribute("inscripciones", serIns.buscarInscripcionesPorEstado("PENDIENTE DE PAGO"));
 		model.addAttribute("ordenes", serOrden.listarOrdenPago());
+		model.addAttribute("generarCod", serOrden.GenerarCodigo());
 		
 		return "ordenpago";
 	}
