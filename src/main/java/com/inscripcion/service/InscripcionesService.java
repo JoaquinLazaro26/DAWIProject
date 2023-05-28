@@ -33,5 +33,9 @@ public class InscripcionesService {
 		return repo.buscarInscripcionEstado(estado);
 	}
 	
+	public String GenerarCodigo() {
+		return repo.GenerarCodigoInst();
+	}
+	
 	
 }

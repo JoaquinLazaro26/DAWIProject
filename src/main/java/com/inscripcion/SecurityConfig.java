@@ -43,7 +43,7 @@ public class SecurityConfig {
 		
 		http.csrf().disable().authorizeHttpRequests().
 			requestMatchers("/usuario/**","/static/**","resources/img/**","resources/css/**").permitAll().and().
-			authorizeHttpRequests().requestMatchers("/alumno/**","/Carrera/**","/inscripcion/**","/ordenpago/**","/resources/**").authenticated().and()
+			authorizeHttpRequests().requestMatchers("/alumno/**","/Carrera/**","/inscripcion/**","/ordenpago/**","/resources/**","/FichaInscripcion/**").authenticated().and()
 			.formLogin().loginPage("/usuario/login").defaultSuccessUrl("/usuario/principal");
 		return http.build();
 	}
