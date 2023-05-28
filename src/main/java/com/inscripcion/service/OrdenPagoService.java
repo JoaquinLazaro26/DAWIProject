@@ -26,4 +26,9 @@ public class OrdenPagoService {
 	public OrdenPago buscarPorCodigo(String cod) {
 		return repo.findById(cod).orElse(null);
 	}
+	
+	public String GenerarCodigo() {
+		return repo.GenerarCodigoPago();
+	}
+	
 }
