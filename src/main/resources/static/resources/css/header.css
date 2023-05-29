@@ -9,11 +9,11 @@ body {
 /* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
 span{
 	margin-top: 2px;
-	margin-right: 20px;
+	margin-right: 5px;
 	font-size: 1rem;
 }
 .btn-cerrarsesion{
-	font-size: 1rem;
+	font-size: 0.8rem;
 }
 /* Navbar section */
 
@@ -63,14 +63,14 @@ span{
     width: auto;
     height: 65px;
     padding: 0;
-    padding-right: 1.5rem;
+    padding-right: 1rem;
 }
 
 .nav div.main_list ul li a {
     text-decoration: none;
     color: #fff;
     line-height: 65px;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
 }
 
 .nav div.main_list ul li a:hover {
