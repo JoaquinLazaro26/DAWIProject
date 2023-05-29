@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/NV_icon-Web.png" type="image/x-icon">
+    <title>Pagina Principal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600;700&display=swap"
+        rel="stylesheet">
+    
+	<link rel="stylesheet" th:href="@{/resources/css/estilos.css}"> 
+    <!---LINKS PARA ICONS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="../resources/img/White_logo-FrontN.png" alt=""></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a th:href="@{/usuario/login}">LOGIN</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+
+        <div class="text-box">
+            <h1>NV University</h1>
+            <p>Making website is nowonr of the easiest thing in the world. You
+                just need to learn HTML,CSS,<br>Java script and you are good to go.
+            </p>
+            <a href="" class="hero-btn">Visit Us To know More </a>
+        </div>
+    </section>
+
+    <!-- COURSE-->
+    <section class="course">
+        <h1>Courses we offer</h1>
+        <p>Lofkvmfkvj v vvjk vfkfvfvf vfvmfvkflmvfv klfv fvmfvkfv</p>
+
+        <div class="row">
+            <div class="course-col">
+                <h3>Intermediate</h3>
+                <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+                    específicas junto
+                    con las herramientas conceptuales o contextuales para comprenderlos, es decir, se le explica algo
+                    concreto.
+                    Por ejemplo: un informe técnico, una página de enciclopedia.</p>
+            </div>
+
+            <div class="course-col">
+                <h3>Intermediate</h3>
+                <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+                    específicas junto
+                    con las herramientas conceptuales o contextuales para comprenderlos, es decir, se le explica algo
+                    concreto.
+                    Por ejemplo: un informe técnico, una página de enciclopedia.</p>
+            </div>
+
+            <div class="course-col">
+                <h3>Intermediate</h3>
+                <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+                    específicas junto
+                    con las herramientas conceptuales o contextuales para comprenderlos, es decir, se le explica algo
+                    concreto.
+                    Por ejemplo: un informe técnico, una página de enciclopedia.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!--CAMPUS-->
+    <section class="campus">
+        <h1>Our Global Campus</h1>
+        <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+            específicas junto</p>
+        <div class="row">
+            <div class="campus-col">
+                <img src="../resources/img/london.png" alt="">
+                <div class="layer">
+                    <h3>LONDON</h3>
+                </div>
+            </div>
+
+            <div class="campus-col">
+                <img src="../resources/img/newyork.png" alt="">
+                <div class="layer">
+                    <h3>NEW YORK</h3>
+                </div>
+            </div>
+
+            <div class="campus-col">
+                <img src="../resources/img/washington.png" alt="">
+                <div class="layer">
+                    <h3>WASHINGTON</h3>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FACILITIES -->
+    <section class="facilities">
+        <h1>Our Faciities</h1>
+        <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+            específicas junto
+            con las herramientas conceptuales o contextuales para comprenderlos</p>
+
+        <div class="row">
+            <div class="facilities-col">
+                <img src="../resources/img/library.png" alt="">
+                <h3>World Class Library</h3>
+                <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+                    específicas junto
+                    con las herramientas conceptuales o contextuales para comprenderlos</p>
+            </div>
+
+            <div class="facilities-col">
+                <img src="../resources/img/basketball.png" alt="">
+                <h3>Largest Play Ground</h3>
+                <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+                    específicas junto
+                    con las herramientas conceptuales o contextuales para comprenderlos</p>
+            </div>
+
+            <div class="facilities-col">
+                <img src="../resources/img/cafeteria.png" alt="">
+                <h3>Tasty and Healthy Food</h3>
+                <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+                    específicas junto
+                    con las herramientas conceptuales o contextuales para comprenderlos</p>
+            </div>
+        </div>
+    </section>
+
+    <!--TESTIMONIALES-->
+    <section class="testimonial">
+        <h1>What Our Student Says</h1>
+        <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+            específicas junto
+            con las herramientas conceptuales o contextuales para comprenderlos</p>
+
+        <div class="row">
+            <div class="testimonial-col">
+                <img src="../resources/img/user.png" alt="">
+                <div>
+                    <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o
+                        informaciones específicas junto
+                        con las herramientas conceptuales o contextuales para comprenderlos</p>
+                    <h3>Muriel Martinez</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+            </div>
+
+            <div class="testimonial-col">
+                <img src="../resources/img/user.png" alt="">
+                <div>
+                    <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o
+                        informaciones específicas junto
+                        con las herramientas conceptuales o contextuales para comprenderlos</p>
+                    <h3>Marckus Kcofler</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--CALL TO ACTION-->
+    <section class="cta">
+        <h1>Enroll For Our Various Online Courses Anywhere
+            From The World</h1>
+        <a href="" class="hero-btn">CONTACT US</a>
+    </section>
+
+    <!--FOOTER-->
+    <section class="footer">
+        <h4>About Us</h4>
+        <p>Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones
+            específicas junto
+            con las herramientas conceptuales o contextuales para comprenderlos</p>
+
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-likedin"></i>
+        </div>
+
+        <p> Made with <i class="fa fa-heart-o"></i>Noemi's Studio </p>
+
+    </section>
+
+
+
+</body>
+
+</html>
