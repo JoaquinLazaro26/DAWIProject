@@ -58,9 +58,15 @@ public class OrdenPagoController {
 			serIns.buscarPorID(inscripcion).setEstado("PAGADO");
 			o.setInscripciones(i);
 			
-			serOrden.grabar(o);
-
-			redirect.addFlashAttribute("MENSAJE","Boleta pagada");
+			if(cod=="") {
+				serOrden.grabar(o);
+				redirect.addFlashAttribute("MENSAJE","Boleta pagada");
+			} else {
+				o.setCodigo(cod);
+				serOrden.actualizar(o);
+				redirect.addFlashAttribute("MENSAJE","Boleta actualizada");
+			}
+			
 			
 		} catch (Exception e) {
 			redirect.addFlashAttribute("MENSAJE","Error en el registro");
