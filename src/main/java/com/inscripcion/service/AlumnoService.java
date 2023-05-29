@@ -33,4 +33,8 @@ public class AlumnoService {
 		return repo.findAll();
 	}
 	
+	//CONSULTAR POR APELLIDO
+	public List<Alumno> consultaPorApellidoAlumno(String ape){
+		return repo.listarPorApellido(ape);
+	}
 }

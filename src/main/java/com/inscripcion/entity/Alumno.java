@@ -35,6 +35,18 @@ public class Alumno {
 	@JoinColumn(name="cod_pais") //BD
 	private Pais pais; //VARIABLE
 	
+	@ManyToOne
+	@JoinColumn(name="cod_ciudad") //BD
+	private Ciudad ciudad; //VARIABLE
+	
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
+
 	//RELACION UNO A MUCHOS
 	@OneToMany(mappedBy = "dniSAlumno")// NOMBRE DE LA ASOCIACION
 	@JsonIgnore

@@ -1,6 +1,7 @@
 package com.inscripcion.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.inscripcion.entity.Alumno;
+import com.inscripcion.entity.Ciudad;
 import com.inscripcion.entity.Pais;
 import com.inscripcion.service.AlumnoService;
+import com.inscripcion.service.CiudadService;
 import com.inscripcion.service.PaisServices;
 
 
@@ -24,6 +27,9 @@ public class AlumnoController {
 	
 	@Autowired
 	private PaisServices serPais;
+	
+	@Autowired
+	private CiudadService serCiudad;
 	
 	//LISTAR ALUMNOS
 		@RequestMapping("/lista")
@@ -40,6 +46,7 @@ public class AlumnoController {
 							  @RequestParam("fecNacimiento")String fecha,
 							  @RequestParam("correoAlu")String correo,
 							  @RequestParam("pais")Integer codPais,
+							  @RequestParam("ciudad")Integer codCiudad,
 							  RedirectAttributes redirect){
 			
 				try {
@@ -54,6 +61,10 @@ public class AlumnoController {
 					
 					//llave
 					a.setPais(p);
+					
+					Ciudad ciudad = new Ciudad();
+					ciudad.setCodigo(codCiudad);
+					a.setCiudad(ciudad);
 					
 					if(cod==0) {
 						serAlumno.grabar(a);
@@ -88,11 +99,21 @@ public class AlumnoController {
 										RedirectAttributes redirect) {
 			return serAlumno.buscarPorCodigo(cod);
 		}
-	
+		
+		
+		//CONSULTA APELLIDO
+		@RequestMapping("/consultaApellido")
+		@ResponseBody
+		public List<Alumno> listaPorApellido(@RequestParam("apellidoAlum")String apell){
+			return serAlumno.consultaPorApellidoAlumno(apell);
+		}
+		
+		// ruta (URL) para listar todos las ciudades según el código del pais
+		@RequestMapping("/listarCiudadPorPais")
+		@ResponseBody // genera JSON
+		public List<Ciudad> listarCiudadPorPais(@RequestParam("codigoPais") Integer codigoPais) {
+			return serCiudad.listarPorPais(codigoPais);
 
-	
-	
-	
-	
-
+		}
+		
 }
