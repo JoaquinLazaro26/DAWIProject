@@ -163,7 +163,7 @@
 					</div>
 					<div class="modal-body">
 						<form method="POST" id="idRegistra" action="/Carrera/grabar">
-							<input type="hidden" id="codigo" class="txtcodigo" name="codigo">
+							<input type="hidden" id="idCodigo" class="txtcodigo" name="codigo"  value="0">
 							<div class="container">
 								<div class="row">
 									<div class="form-group has-feedback col-md-12">
@@ -284,32 +284,15 @@
 
 	</script>
 
-	<script th:inline="javascript" th:if="${Mensaje} != null" type="text/javascript">
-
-		let message = /*[[${Mensaje}]]*/
-			console.log(message)
-
-		toastr.success(message, toastr.options = {
+	<script  th:inline="javascript" th:if="${MENSAJE!=null}">
+		//recuperar atributo "MENSAJE"
+		let msg=/*[[${MENSAJE}]]*/
+		
+		toastr.success(msg, toastr.options = {
 			"timeOut": "2000",
-			"positionClass ": " toast-top-right ",
-
+			"positionClass " : " toast-top-right ",
 		});
-
 	</script>
-
-	<script th:inline="javascript" th:if="${Error} != null" type="text/javascript">
-
-		let messageErr = /*[[${Error}]]*/
-
-
-			toastr.error(messageErr, toastr.options = {
-				"timeOut": "2000",
-				"positionClass ": " toast-top-right ",
-
-			});
-
-	</script>
-
 
 
 	<script>
@@ -319,10 +302,11 @@
 			let codmed = $(this).parents("tr").find("td")[0].innerHTML;
 			$.get("buscar?codigo=" + codmed, function (response) {
 				//
+				$("#idCodigo").val(response.codigo);
 				$("#idNombre").val(response.nomCarrera);
 				$("#idCiclos").val(response.ciclos);
 				$("#idCreditos").val(response.creditos);
-				$("#idFacultad").val(response.Facultad.codigo);
+				$("#idFacultad").val(response.facultad.codigo);
 				
 			})
 		})

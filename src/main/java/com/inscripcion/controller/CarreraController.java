@@ -53,11 +53,15 @@ public class CarreraController {
 	}
 	
 	@RequestMapping("/grabar")
-	public String grabar(@RequestParam("nombre") String nom, @RequestParam("ciclo") String ciclo,
-			@RequestParam("creditos") int creditos, @RequestParam("Facultad") int Facultad,
-			RedirectAttributes redirect) {
+	public String grabar( @RequestParam("codigo") int cod, 
+						 @RequestParam("nombre") String nom, 
+						 @RequestParam("ciclo") String ciclo,
+						 @RequestParam("creditos") int creditos, 
+						 @RequestParam("Facultad") int Facultad,
+						 RedirectAttributes redirect) {
 
 		try {
+		
 			Carrera med = new Carrera();
 			med.setNomCarrera(nom);
 			med.setCiclos(ciclo);
@@ -66,17 +70,22 @@ public class CarreraController {
 			tp.setCodigo(Facultad);
 			med.setFacultad(tp);
 
-			redirect.addFlashAttribute("Mensaje", "Carrera Registrada");
-			serCarrera.registrar(med);
-
+			if(cod==0) {
+				serCarrera.registrar(med);
+				redirect.addFlashAttribute("MENSAJE","Carrera Registrada");
+			}//ACTUALIZAR ALUMNO
+			else {
+				med.setCodigo(cod);
+				serCarrera.actualizar(med);
+				redirect.addFlashAttribute("MENSAJE", "Carrera actualizado");
+			}
+			
 		} catch (Exception e) {
+			redirect.addFlashAttribute("MENSAJE","Error en el registro");
 			e.printStackTrace();
-			redirect.addFlashAttribute("Error", "Carrera no Registrada");
 		}
-
 		return "redirect:/Carrera/lista";
-	}
-	
+}
 	
 	@RequestMapping("/buscar")
 	@ResponseBody

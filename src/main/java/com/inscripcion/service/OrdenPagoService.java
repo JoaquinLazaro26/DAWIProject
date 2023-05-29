@@ -20,6 +20,10 @@ public class OrdenPagoService {
 	public void grabar(OrdenPago o) {
 		repo.save(o);
 	}
+	public void actualizar(OrdenPago o) {
+		repo.save(o);
+	}
+	
 	public void eliminar(String cod) {
 		repo.deleteById(cod);
 	}

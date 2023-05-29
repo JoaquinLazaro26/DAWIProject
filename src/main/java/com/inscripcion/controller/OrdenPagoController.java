@@ -70,7 +70,13 @@ public class OrdenPagoController {
 		return "redirect:/ordenpago/lista";
 	}
 
-
+	@RequestMapping("/eliminar")
+	public String eliminarPorCodigo (@RequestParam("codigo")String cod,
+										RedirectAttributes redirect) {
+		serOrden.eliminar(cod);
+		redirect.addFlashAttribute("MENSAJE","Alumno eliminado");
+		return "redirect:/ordenpago/lista";
+	}
 
 
 }
