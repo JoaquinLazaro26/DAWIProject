@@ -230,11 +230,9 @@
 			$.get("/ordenpago/buscar?codigo="+codAlumno,function(response){
 				console.log(response);
 				$("#idCodigo").val(response.codigo);
-				$("#idNombre").val(response.nomAlumno);
-				$("#idApellido").val(response.apeAlumno);
-				$("#idFecha").val(response.fecNacimiento);
-				$("#idCorreo").val(response.correoAlu);
-				$("#idPais").val(response.pais.codPais);
+				$("#idMonto").val(response.monto);
+				$("#idInscripciones").val(response.inscripciones.codigo);
+				$("#idEstado").val(response.estado);
 	
 			})
 		})
@@ -244,7 +242,7 @@
 			//resetear formulario
 			$("#idRegistra").trigger("reset");
 			//asignar el valor de "0" a la caja con ID "idCodigo"
-			$("#idCodigo").val(0);
+			//$("#idCodigo").val(0);
 			//resetear validación
 			$("#idRegistra").data("bootstrapValidator").resetForm(true);
 		})
