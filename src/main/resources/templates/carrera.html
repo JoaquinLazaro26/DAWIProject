@@ -106,20 +106,19 @@
 	</style>
 </head>
 
-<body>
+<body background="">
 	<div th:insert="plantilla/UITemplate :: cabecera"></div>
 	<div class="container">
 
-		<h3 class="text-center mt-4">LISTA DE CARRERAS</h3>
-
-		<button type="button" class="btn btn-warning mt-5 btn-saves" 
-		data-toggle="modal" data-target="#modalMedicamento"id="btn-nuevo">
-			<i class="far fa-file"></i> Nueva Carrera
+		<h3 class="text-center mt-4" >::::: CARRERAS :::::</h3>
+			
+		<button type="button" class="btn btn-info mt-5 btn-saves" 
+		data-toggle="modal" data-target="#modalMedicamento"id="btn-nuevo" >
+			<i class=""></i> AGREGAR CARRERA
 		</button>
-		
 		<div class=" mt-2">
 
-			<table class="table table-striped table-bordered mt-5" id="tableMedicamentos">
+			<table class="table table-striped table-bordered mt-5" id="tableMedicamentos" >
 				<thead>
 					<tr>
 						<th>Código</th>
@@ -144,9 +143,9 @@
 						<td th:text="${row.creditos}"></td>
 						<td th:text="${row.Facultad.nombre}"></td>	
 					
-						<td><a class="btn btn-warning btn-editar" data-toggle="modal" data-target="#modalMedicamento"><i
+						<td><a class="btn btn-primary btn-editar" data-toggle="modal" data-target="#modalMedicamento"><i
 									class="far fa-edit"></i></a></td>
-						<td><a data-toggle="modal" data-target="#ModalEliminar" class="btn btn-danger btn-eliminar"><i
+						<td><a data-toggle="modal" data-target="#ModalEliminar" class="btn btn-info btn-eliminar"><i
 									class="far fa-trash-alt"></i></a></td>
 					</tr>
 				</tbody>
@@ -161,7 +160,7 @@
 					<div class="modal-header bg-blue-darker">
 						<h4 class="modal-title text-white">CARRERA</h4>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body" >
 						<form method="POST" id="idRegistra" action="/Carrera/grabar">
 							<input type="hidden" id="idCodigo" class="txtcodigo" name="codigo"  value="0">
 							<div class="container">
@@ -204,10 +203,14 @@
 							
 							
 							<div class="col-md-12 text-center mt-4">
-								<button type="submit" id="Guardar" class="btn btn-primary txt-titulos "><i
+								<button type="submit" id="Guardar" class="btn btn-outline-primary ">
+									<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+									<i
 										class="fas fa-save"></i>
 									Registrar</button>
-								<button type="button" id="btn-cerrar" class="btn btn-danger" data-dismiss="modal"><i
+								<button type="button" id="btn-cerrar" class="btn btn-outline-danger" data-dismiss="modal">
+									<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+									<i
 										class="fas fa-undo-alt"></i> Cancelar</button>
 							</div>
 						</form>
@@ -216,14 +219,15 @@
 			</div>
 		</div>
 		
+  		
 		<!-- FIN Modal eliminar carreras -->
 
 		<div class="modal fade" id="ModalEliminar" data-backdrop="static" data-keyboard="false" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-login modal-lg">
 				<div class="modal-content">
-					<div class="modal-header bg-warning ">
-						<h3 class="modal-title text-white text-center">Deseas Eliminar La carrera</h4>
+					<div class="modal-header bg-info ">
+						<h3 class="modal-dialog  modal-dialog-scrollable">Deseas Eliminar La carrera</h4>
 					</div>
 					<div class="modal-body">
 						<form method="POST" id="idDelete" action="/Carrera/eliminar">
@@ -232,12 +236,13 @@
 							</p>
 
 							<div class="col-md-12 text-center mt-4">
-								<button type="submit" id="Eliminar" class="btn btn-danger  "><i
-										class="fas fa-delete"></i>
-									SI</button>
-								<button type="button" id="btn-cerrar2" class="btn btn-primary" data-dismiss="modal"><i
-										class="fas fa-undo-alt"></i> NO</button>
-							</div>
+								<button type="submit" id="Eliminar" class="btn btn-outline-info">
+									<iclass="fas fa-delete"><span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+									</i>SI</button>
+								<button type="button" id="btn-cerrar2" class="btn btn-outline-danger" data-dismiss="modal">
+									<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+									<iclass="fas fa-undo-alt"></i> NO</button>
+							</div>																					
 						</form>
 					</div>
 				</div>
