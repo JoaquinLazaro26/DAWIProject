@@ -16,29 +16,39 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_alumno")
+@Table(name = "tb_alumno")
 public class Alumno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_alu")
+	@Column(name = "id_alu")
 	private Integer codigo;
-	@Column(name="nombre_alu")
+	@Column(name = "nombre_alu")
 	private String nomAlumno;
-	@Column(name="apellido_alu")
+	@Column(name = "apellido_alu")
 	private String apeAlumno;
-	@Column(name="fecha_nac")
+	@Column(name = "fecha_nac")
 	private LocalDate fecNacimiento;
-	@Column(name="correo_alu")
+	@Column(name = "correo_alu")
 	private String correoAlu;
-	
+	@Column(name = "estado")
+	private String estado;
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	@ManyToOne
-	@JoinColumn(name="cod_pais") //BD
-	private Pais pais; //VARIABLE
-	
+	@JoinColumn(name = "cod_pais") // BD
+	private Pais pais; // VARIABLE
+
 	@ManyToOne
-	@JoinColumn(name="cod_ciudad") //BD
-	private Ciudad ciudad; //VARIABLE
-	
+	@JoinColumn(name = "cod_ciudad") // BD
+	private Ciudad ciudad; // VARIABLE
+
 	public Ciudad getCiudad() {
 		return ciudad;
 	}
@@ -47,8 +57,8 @@ public class Alumno {
 		this.ciudad = ciudad;
 	}
 
-	//RELACION UNO A MUCHOS
-	@OneToMany(mappedBy = "dniSAlumno")// NOMBRE DE LA ASOCIACION
+	// RELACION UNO A MUCHOS
+	@OneToMany(mappedBy = "dniSAlumno") // NOMBRE DE LA ASOCIACION
 	@JsonIgnore
 	private List<Inscripcion> listaInscripcion;
 
@@ -108,5 +118,4 @@ public class Alumno {
 		this.listaInscripcion = listaInscripcion;
 	}
 
-	
 }

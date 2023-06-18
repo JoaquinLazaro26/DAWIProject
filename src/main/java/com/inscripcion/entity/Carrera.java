@@ -14,28 +14,42 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tb_carrera")
+@Table(name = "tb_carrera")
 public class Carrera {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_carrera")
+	@Column(name = "id_carrera")
 	private Integer codigo;
-	@Column(name="nom_carrera")
+	@Column(name = "nom_carrera")
 	private String nomCarrera;
-	@Column(name="ciclo_fac")
+	@Column(name = "ciclo_fac")
 	private String ciclos;
-	@Column(name="creditos_fac")
+	@Column(name = "creditos_fac")
 	private int creditos;
-	
+	@Column(name = "costo")
+	private double costo;
+
 	// Witer
 	@ManyToOne
-	@JoinColumn(name="cod_facultad")
+	@JoinColumn(name = "cod_facultad")
 	private Facultad Facultad;
-	
-	//RELACION UNO A MUCHOS
-	@OneToMany(mappedBy = "tipoCarrera")// NOMBRE DE LA ASOCIACION
+
+	// RELACION UNO A MUCHOS
+	@OneToMany(mappedBy = "tipoCarrera") // NOMBRE DE LA ASOCIACION
 	@JsonIgnore
 	private List<Inscripcion> listaInscripcion;
+
+	@OneToMany(mappedBy = "Carrera")
+	@JsonIgnore
+	private List<Curso> listaCurso;
+
+	public List<Curso> getListaCurso() {
+		return listaCurso;
+	}
+
+	public void setListaCurso(List<Curso> listaCurso) {
+		this.listaCurso = listaCurso;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
@@ -85,6 +99,12 @@ public class Carrera {
 		Facultad = facultad;
 	}
 
-	
-	
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
+	}
+
 }

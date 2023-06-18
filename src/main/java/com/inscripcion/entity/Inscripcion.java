@@ -26,7 +26,8 @@ public class Inscripcion {
 	private LocalDate fechaIns;
 	@Column(name="estado_insc")
 	private String estado;
-	
+	@Column(name="costo")
+	private double costo;
 	
 	@OneToMany(mappedBy = "inscripciones")
 	@JsonIgnore
