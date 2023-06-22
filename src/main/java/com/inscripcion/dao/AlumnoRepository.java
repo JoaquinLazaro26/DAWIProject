@@ -13,4 +13,8 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
 	@Query("select a from Alumno a where a.apeAlumno=?1")
 	public List<Alumno> listarPorApellido(String apellid);
 
+	// JEFRY - PARA FICHA INSCRIPCION
+	public List<Alumno> findByNomAlumnoStartingWith(String nom);
+	
+	
 }

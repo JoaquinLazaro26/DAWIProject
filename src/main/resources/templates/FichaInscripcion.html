@@ -9,168 +9,237 @@
 <link rel="stylesheet" th:href="@{/resources/datepicker/bootstrap-datepicker.css}">
 <link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.css}">
 <link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.min.css}"> 
-
+	
 <style>
+	body{
+		font-family:verdana;
+		font-size:12px;
+	}
 	.modal-header, h4, .close {
 		background-color: #286090;
 		color: white !important;
 		text-align: center;
 		font-size: 20px;
 	}
-	.help-block{
-	 color: red;
-	 /*display: none;*/
-	}
-	.form-group.has-error .form-control-label {
-	  color: red;
-	}
-	.form-group.has-error .form-control {
-	  border: 1px solid red;
-	  box-shadow: 0 0 0 0.2rem rgba(250, 16, 0, 0.18);
-	}
 	
-	.alertify .ajs-dialog {
-	    top: 50%;
-	    transform: translateY(-50%);
-	    margin: auto;
-	}
-	
-	.ajs-header{
-		background-color: #286090 !important;
-		color: white !important;
-		/*text-align: center;*/
-		font-size: 18px;
-		font-weight: bold;
-	}
-	.ajs-ok{
-		color: #fff;
-	    background-color: #007bff;
-	    border-color: #007bff;
-	}
-	.ajs-cancel{
-		color: #fff;
-	    background-color: #dc3545;
-	    border-color: #dc3545;
-	}
-	.btn-primary{
-	background-color: #286090 !important;
-	}
-	.dataTables_length, .dataTables_info{
-		display: none;
-	}
-	.modal-lg, .modal-xl {
-		max-width: 900px;
-		max-height: 800px;
-	}
-	
-	.form-control-feedback2 {
-	  margin:1px;
-	  position: absolute;
-	  padding: 10px;
-	  pointer-events: none;
-	  background-color: #e9ecef;
-	  border-style: none;
-	}
-	.form-control-feedback3 {
-	  margin:1px;
-	  position: absolute;
-	  margin-left:225px;
-	  padding: 10px;
-	  pointer-events: none;
-	  background-color: #e9ecef;
-	  border-style: none;
-	}
 	.form-control {
-	  padding-left: 40px!important;
+		height:30px!important;
+		 /*padding-left: 40px!important;*/
 	}
-	/*.toast-succes{
-		width: 120px;
-	}*/
-</style> 
+	fieldset, legend {
+	  	all: revert;
+	}
+	.reset {
+	    all: revert;
+	}
+	.btn-danger{
+		margin:0px!important;
+		height:30px!important;
+		padding-top:3px!important;	
+	}
+	.colorBloqueado{
+		background:#F7EEC5;	
+	}
+	.form-control:focus {
+	background:#F7EEC5;	
+	}
+</style>
+
+<script src="https://kit.fontawesome.com/1da5200486.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
 </head>
 <body>
+	
+	<div th:insert="plantilla/UITemplate :: cabecera"></div>
 	<div class="container">
 		
-			<h3 class="text-center mt-4"> ::::: REGISTRO FICHA DE INSCRIPCIONES ::::: </h3>	
+	<h1 class="text-center">FICHA DE INSCRIPCION</h1>
 
-			<br>
-			<hr>
-		
-								<div class="modal-header bg-blue-darker">
-									<h4 class="modal-title text-white">Datos de la Inscripcion</h4>
-								</div>
-								<div class="modal-body">
-									<form method="POST" id="idRegistra" action="/FichaInscripcion/grabar">	
-										<!-- <input type="hidden" id="idCodigo" name="codigo" value="0"> -->
-										<div class="container">
-											<div class="row">
-												
-												<div class="form-group has-feedback col-md-4">
-													<label for="exampleInputEmail1"><b>Codigo</b></label><br>	
-													<i class="fas fa-pen-fancy form-control-feedback2"></i>
-													<input th:value="${generarCod}" type="text" class="form-control" id="idCodigo" placeholder="Ingresar codigo" name="codigo" readonly>	
-												</div>
-												
-												<div class="form-group has-feedback col-md-6">	
-														<label for="exampleInputEmail1"><b>Carrera</b></label><br>
-												        <i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
-													    <select class="form-control" id="idCarrera" name="tipoCarrera">
-													      <option value=" ">[Seleccione Carrera]</option>
+	<div class="modal-body">
+							
+														
+						<hr/>
+	
+						<div class="row mt-3">
+								<div class="col-lg-7">
+									<fieldset class="reset">
+									  <legend class="reset">Consulta Carrera</legend>
+										<div class="row mt-3">
+											<label for="inputEmail3" class="col-sm-2">Carrera:</label>
+											<div class="col-sm-4">
+											  		<select class="form-control" id="idCarrera" name="tipo">
+													      <option value=" ">[Seleccione su carrera]</option>
 													      <option th:each="data:${carreras}"   
 													      		th:utext="${data.nomCarrera}"
 													      		th:value="${data.codigo}"
 													      />
-													    </select>
-												 </div>
-												 
-												 <div class="form-group has-feedback col-md-6">	
-														<label for="exampleInputEmail1"><b>Alumno</b></label><br>
-												        <i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
-													    <select class="form-control" id="idAlumno" name="dniSAlumno">
-													      <option value=" ">[Seleccione Alumno]</option>
-													      <option th:each="data:${alumnos}"   
-													      		th:utext="${data.nomAlumno}"
-													      		th:value="${data.codigo}"
-													      />
-													    </select>
-												 </div>
-												 
-												  <div class="form-group has-feedback col-md-4">	
-													<label for="exampleInputEmail1" class="text-center"><b>Fecha vencimiento</b></label><br>
-												    <i class="fas fa-calendar-week form-control-feedback2"></i>
-												    <input type="text" style="background-color:#aed6f1" class="form-control" id="usr1" name="fechaIns"
-												    													   placeholder="YYYY-MM-DD" autocomplete="off">							
-											    </div>
-		
-												<div class="form-group has-feedback col-md-12">
-														<label for="exampleInputEmail1"><b>Estado</b></label><br>		
-														<i class="fas fa-file-signature form-control-feedback2"></i>	
-														<select class="form-select form-control" name="estado" id="idEstado">
-														  <option value="" selected>[Seleccione]</option>
-														  <option value="CANCELADO">CANCELADO</option>
-														  <option value="PAGADO">PAGADO</option>
-														  <option value="PENDIENTE DE PAGO">PENDIENTE DE PAGO</option>
-														</select>																						
-												</div>
-														    
+													</select>
 											</div>
-										</div>								
-										<div class="col-md-12 text-center mt-4"> 										
-											<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i> REGISTRAR</button>
-										</div> 																								
-									</form>
-									
-									
+											<div class="col-sm-6">
+												<button type="button" class="btn btn-info" id="btn-carrera">
+													<i class="fas fa-search"></i>
+											
+												</button>
+											</div>
+										</div>	
+										<table id="tableCarrera" class="table table-striped mt-4" style="width:100%">
+											<thead>
+												<tr>
+													<th>Código</th>
+													<th>Carrera</th>
+													<th>Ciclos</th>
+													<th>Creditos</th>
+													<th>Facultad</th>
+													<th>Costo</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td>
+														<button type="button" class="btn btn-warning">
+															<i class="fas fa-user-plus"></i>
+														</button>
+													</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</fieldset>	
 								</div>
+
+								<div class="col-lg-6">
+									<fieldset class="reset">
+									  <legend class="reset">Consulta Alumno</legend>
+										<div class="row mt-3">
+											<label for="inputEmail3" class="col-sm-2">Alumno:</label>
+											<div class="col-sm-4">
+											  <input type="text" class="form-control" id="txtAlumno">
+											</div>
+											<div class="col-sm-4">
+												<button type="button" class="btn btn-success" id="btn-alumno">
+													<i class="fas fa-search"></i>
+											
+												</button>
+											</div>
+											
+										</div>	
+										<table id="tableAlumno" class="table table-striped mt-4" style="width:100%">
+											<thead>
+												<tr>
+													<th>Código</th>
+													<th>Nombre</th>
+													<th>Apellido</th>
+													<th>Pais</th>
+													<th>Ciudad</th>
+													<th>Estado</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>												
+													<td>
+														<button type="button" class="btn btn-secondary">
+															<i class="fas fa-laptop-medical"></i>
+														</button>
+													
+													</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</fieldset>	
+								</div>
+								
+							
+								
+								
+								<div class="col-lg-6">
+									<fieldset class="reset">
+									  <legend class="reset">Consulta Cursos</legend>
+
+										<table id="tableCurso" class="table table-striped mt-4" style="width:100%">
+											<thead>
+												<tr>
+													<th>Código</th>
+													<th>Nombre</th>
+													<th>Carrera</th>
+													<th>Creditos</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td></td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</fieldset>	
+								</div>
+								<br>
+						</div>
+						
+				<hr/>		
+						
+			<form method="post" th:action="@{/FichaInscripcion/grabar}">		
+				<div class="row">
+					
+					  <div class="col-3">
+						<label for="inputPassword6" class="col-form-label">Codigo Inscripcion</label>
+						<input th:value="${generarCod}" type="text" class="form-control" id="idCodigo" placeholder="Ingresar codigo" name="codigo" readonly>
+					  </div>
+					  <div class="col-3">
+						<label for="inputPassword6" class="col-form-label">Alumno</label>
+						<input type="text" class="form-control colorBloqueado" name="dniSAlumno" id="id-alumno" readonly>
+					  </div>
+					  <div class="col-3">
+						<label for="inputPassword6" class="col-form-label">Carrera</label>
+						<input type="text" class="form-control colorBloqueado" name="tipoCarrera" id="id-carrera" readonly>
+					  </div>
+					  <div class="col-3">
+						<label for="inputPassword6" class="col-form-label">Costo Total</label>
+						<input type="text" class="form-control colorBloqueado" name="costo" id="id-costo" readonly>
+					  </div>
+					  <div class="col-3">
+						<label for="inputPassword6" class="col-form-label">Fecha</label>
+						<input type="date" class="form-control" name="fechaIns">
+					  </div>			
+
+				</div>	
+				
+				<div class="modal-footer">
+						<button type="submit" class="btn btn-danger"><i class="fas fa-save"></i> Inscribir</button>			
+				</div>	 
+					    
+			</form>
+				
+				<br/>
+				
+				
+	    </div>
+		
 	
-	
-	
-	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-		<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
 	<script th:src="@{/resources/datepicker/bootstrap-datepicker.js}"></script>     
 	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
@@ -179,6 +248,123 @@
 	<script src="https://kit.fontawesome.com/08aaa156fb.js" crossorigin="anonymous"></script>
 	<script th:src="@{/resources/alertifyjs/alertify.js}"></script>
 	<script th:src="@{/resources/alertifyjs/alertify.min.js}"></script>
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	
+	
+	
+	<script>
+		
+		// CONSULTA ALUMNO
+		$(document).on("click","#btn-alumno",function(){
+			let nom=$("#txtAlumno").val();
+			let boton=`<button type="button" class="btn btn-secondary btn-datos-alumno">
+														<i class="fas fa-laptop-medical"></i>
+													</button>`;
+			//reorganizar tabla
+			$("#tableAlumno").DataTable().destroy();
+			$("#tableAlumno tbody").empty();
+			$.get("/FichaInscripcion/listaAlumnoJSON?nomAlumno="+nom,function(response){
+				//bucle
+				$.each(response,function(index,item){
+					$("#tableAlumno tbody").append(
+						"<tr><td>"+item.codigo+"</td><td>"+item.nomAlumno+
+						"</td><td>"+item.apeAlumno+"</td><td>"+item.pais.namePais+"</td><td>"+item.ciudad.nombre+"</td><td>"+item.estado+
+						"</td><td>"+boton+"</td></tr>");
+				})
+				$("#tableClientes").DataTable();
+			})
+		})	
+		
+	</script>
+	
+	<script>
+		
+		// CONSULTA CARRERA
+		$(document).on("click","#btn-carrera",function(){
+		//alert(123);
+		let carrera=$("#idCarrera").val();
+		let boton=`<button type="button" class="btn btn-warning btn-datos-carrera">
+														<i class="fas fa-user-plus"></i>
+													</button>`;
+		//
+		$("#tableCarrera").DataTable().destroy();
+		$("#tableCarrera tbody").empty();
+		$.get("/FichaInscripcion/listaCarreraJSON?codigo="+carrera,function(response){
+			console.log(response);
+			//bucle
+			$.each(response,function(index,item){
+				$("#tableCarrera tbody").append(
+					"<tr><td>"+item.codigo+"</td><td>"+item.nomCarrera+"</td><td>"+item.ciclos+
+						"</td><td>"+item.creditos+"</td><td>"+item.facultad.nombre+"</td><td>"+item.costo+
+						"</td><td>"+boton+"</td></tr");
+			
+				})
+			})
+		})	
+		
+	</script>
+	
+	<script>
+		
+		// CONSULTA CURSOS
+		$(document).on("click","#btn-carrera",function(){
+		//alert(123);
+		let curso=$("#idCarrera").val();
+		//
+		$("#tableCurso").DataTable().destroy();
+		$("#tableCurso tbody").empty();
+		$.get("/FichaInscripcion/listaCursoJSON?codigo="+curso,function(response){
+			console.log(response);
+			//bucle
+			$.each(response,function(index,item){
+				$("#tableCurso tbody").append(
+					"<tr><td>"+item.codigo+"</td><td>"+item.nombre+"</td><td>"+item.carrera.nomCarrera+"</td><td>"+item.credito+"</td></tr");
+
+				})
+			})
+		})	
+		
+	</script>
+	
+	<script>
+		
+		$(document).on("click",".btn-datos-alumno",function(){
+			let cod;
+			cod=$(this).parents("tr").find("td")[0].innerHTML;
+			$("#id-alumno").val(cod);	
+		})
+		
+	</script>
+	
+	<script>
+		
+		$(document).on("click",".btn-datos-carrera",function(){
+			let cod,costo;
+			cod=$(this).parents("tr").find("td")[0].innerHTML;
+			costo=$(this).parents("tr").find("td")[5].innerHTML;
+			$("#id-carrera").val(cod);	
+			$("#id-costo").val(costo);	
+		})
+		
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<script  th:inline="javascript" th:if="${MENSAJE!=null}">
 		//recuperar atributo "MENSAJE"
@@ -189,12 +375,6 @@
 			"positionClass " : " toast-top-right ",
 		});
 	</script>
-	
-	
-	
-	
-	
-	
 	
 	<script>
 		$('#tableMedicamentos').DataTable();

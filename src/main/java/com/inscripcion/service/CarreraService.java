@@ -41,4 +41,11 @@ public class CarreraService {
 		return repo.findById(cod).orElse(null);
 	}
 	
+	// JEFRYYYY
+	// CONSULTA Y REPORTE POR COMBO PAIS
+	public List<Carrera> listarCarrerasPorCodigo(int cod) {
+		return repo.listarCarrerasPorCodigo(cod);
+	}
+	
+	
 }

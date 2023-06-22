@@ -14,9 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.inscripcion.entity.Alumno;
 import com.inscripcion.entity.Carrera;
+import com.inscripcion.entity.Curso;
 import com.inscripcion.entity.Inscripcion;
 import com.inscripcion.service.AlumnoService;
 import com.inscripcion.service.CarreraService;
+import com.inscripcion.service.CursoService;
 import com.inscripcion.service.InscripcionesService;
 
 @Controller
@@ -28,17 +30,40 @@ public class FichaInscripcionesController {
 	private CarreraService serCar;
 	@Autowired
 	private AlumnoService serAlu;
+	//
+	@Autowired
+	private CursoService serCurso;
 	
 	
 	// LISTAR TABLA
 	@RequestMapping("/lista")
 	public String index(Model model) {
 		model.addAttribute("carreras", serCar.listarCarreras());
-		model.addAttribute("alumnos", serAlu.listarAlumnos());
+		
 		model.addAttribute("generarCod", serIns.GenerarCodigo());
-		//th:value="${generarCod}"
 		
 		return "FichaInscripcion";
+	}
+	
+	// BUSCAR ALUMNOS
+	@RequestMapping("/listaAlumnoJSON")
+	@ResponseBody
+	public List<Alumno> listaAlumnoJSON(@RequestParam("nomAlumno") String nom) {
+		return serAlu.listaAlumnoPorNombre(nom);
+	}
+	
+	// BUSCAR CARRERA	
+	@RequestMapping("/listaCarreraJSON")
+	@ResponseBody
+	public List<Carrera> listarCarrera(@RequestParam("codigo") int codCar) {
+		return serCar.listarCarrerasPorCodigo(codCar);
+	}
+	
+	// BUSCAR CARRERA	
+	@RequestMapping("/listaCursoJSON")
+	@ResponseBody
+	public List<Curso> listarCurso(@RequestParam("codigo") int codCar) {
+		return serCurso.listarCursosPorCodigoCarrera(codCar);
 	}
 	
 	// ACTUAIZAR
@@ -48,7 +73,7 @@ public class FichaInscripcionesController {
 				@RequestParam("tipoCarrera") int codCar,
 				@RequestParam("dniSAlumno") int codAlu,
 				@RequestParam("fechaIns") String fec,
-				@RequestParam("estado") String estado,
+				@RequestParam("costo") double costo,
 				RedirectAttributes redirect){
 			try {
 				//
@@ -64,12 +89,13 @@ public class FichaInscripcionesController {
 				i.setDniSAlumno(a);
 				//
 				i.setFechaIns(LocalDate.parse(fec));
-				i.setEstado(estado);
+				i.setEstado("PENDIENTE"); // CANCELADA - PENDIENTE - PAGADO
+				i.setCosto(costo);
 				//
-					i.setCodigo(cod);
-					serIns.registrar(i);
-					//
-					redirect.addFlashAttribute("MENSAJE","Inscripcion registrada");
+				i.setCodigo(cod);
+				serIns.registrar(i);
+				//
+				redirect.addFlashAttribute("MENSAJE","Inscripcion registrada");
 				
 			} catch (Exception e) {
 				redirect.addFlashAttribute("MENSAJE","Error en el registro");

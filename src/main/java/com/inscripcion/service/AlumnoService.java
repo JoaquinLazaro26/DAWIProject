@@ -37,4 +37,10 @@ public class AlumnoService {
 	public List<Alumno> consultaPorApellidoAlumno(String ape){
 		return repo.listarPorApellido(ape);
 	}
+	
+	// JEFRYY
+	public List<Alumno> listaAlumnoPorNombre(String nom){
+		return repo.findByNomAlumnoStartingWith(nom);
+	}
+	
 }

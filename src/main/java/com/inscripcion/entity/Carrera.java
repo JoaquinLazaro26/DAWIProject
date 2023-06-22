@@ -43,6 +43,8 @@ public class Carrera {
 	@JsonIgnore
 	private List<Curso> listaCurso;
 
+	
+	
 	public List<Curso> getListaCurso() {
 		return listaCurso;
 	}

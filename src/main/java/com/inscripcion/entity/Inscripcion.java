@@ -33,7 +33,6 @@ public class Inscripcion {
 	@JsonIgnore
 	private List<OrdenPago> listaordenpago;
 	
-	
 	//BI-DIRECIONAL
 	//MUCHOS A UNO
 	@ManyToOne
@@ -92,6 +91,14 @@ public class Inscripcion {
 
 	public void setListaordenpago(List<OrdenPago> listaordenpago) {
 		this.listaordenpago = listaordenpago;
+	}
+
+	public double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(double costo) {
+		this.costo = costo;
 	}
 
 	
