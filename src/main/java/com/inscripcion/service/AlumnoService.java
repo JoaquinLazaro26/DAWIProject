@@ -40,7 +40,7 @@ public class AlumnoService {
 	
 	// JEFRYY
 	public List<Alumno> listaAlumnoPorNombre(String nom){
-		return repo.findByNomAlumnoStartingWith(nom);
+		return repo.findByNomAlumnoStartingWithAndEstadoRegistrado(nom);
 	}
 	
 }

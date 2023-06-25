@@ -55,6 +55,7 @@ public class AlumnoController {
 					a.setApeAlumno(apellido);
 					a.setFecNacimiento(LocalDate.parse(fecha));
 					a.setCorreoAlu(correo);
+					a.setEstado("REGISTRADO");
 					
 					Pais p=new Pais();
 					p.setCodPais(codPais);

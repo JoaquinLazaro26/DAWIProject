@@ -8,4 +8,5 @@ import com.inscripcion.entity.OrdenPago;
 public interface OrdenPagoRepository extends JpaRepository<OrdenPago, String>{
 	@Query(value="{call sp_generar_codBoleta}", nativeQuery = true)
 	public String GenerarCodigoPago();
+	
 }

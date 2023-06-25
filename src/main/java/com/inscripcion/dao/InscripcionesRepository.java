@@ -12,4 +12,6 @@ public interface InscripcionesRepository extends JpaRepository<Inscripcion, Stri
 	// QUERY PARA EJECUTAR EL PROCEDURE DE GENERAR CODIGO DE INSCRIPCION
 	@Query(value="{call sp_generar_codInscrip}", nativeQuery = true)
 	public String GenerarCodigoInst();
+	@Query(value="select i.costo from Inscripcion i where i.codigo=?1")
+	public double obtenerCostoPorId(String cod);
 }

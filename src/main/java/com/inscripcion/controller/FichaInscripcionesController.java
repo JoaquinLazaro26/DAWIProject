@@ -72,7 +72,6 @@ public class FichaInscripcionesController {
 				@RequestParam("codigo") String cod,
 				@RequestParam("tipoCarrera") int codCar,
 				@RequestParam("dniSAlumno") int codAlu,
-				@RequestParam("fechaIns") String fec,
 				@RequestParam("costo") double costo,
 				RedirectAttributes redirect){
 			try {
@@ -88,7 +87,7 @@ public class FichaInscripcionesController {
 				a.setCodigo(codAlu);
 				i.setDniSAlumno(a);
 				//
-				i.setFechaIns(LocalDate.parse(fec));
+				i.setFechaIns(LocalDate.now());
 				i.setEstado("PENDIENTE"); // CANCELADA - PENDIENTE - PAGADO
 				i.setCosto(costo);
 				//

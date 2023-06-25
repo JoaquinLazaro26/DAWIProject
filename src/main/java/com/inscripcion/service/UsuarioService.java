@@ -14,7 +14,7 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuRepo;
 	
-	public Usuario validarSesion(String vLogin) {
+	public Usuario validarSesion(String vLogin) {	
 		return usuRepo.iniciarSesion(vLogin);
 	}
 	public List<Enlace> retornarEnlacesUsuario(int codigo){

@@ -27,7 +27,7 @@ public class OrdenPagoController {
 	
 	@RequestMapping("/lista")
 	private String index(Model model) {
-		model.addAttribute("inscripciones", serIns.buscarInscripcionesPorEstado("PENDIENTE DE PAGO"));
+		model.addAttribute("inscripciones", serIns.buscarInscripcionesPorEstado("PENDIENTE"));
 		model.addAttribute("ordenes", serOrden.listarOrdenPago());
 		model.addAttribute("generarCod", serOrden.GenerarCodigo());
 		
@@ -82,6 +82,13 @@ public class OrdenPagoController {
 		serOrden.eliminar(cod);
 		redirect.addFlashAttribute("MENSAJE","Alumno eliminado");
 		return "redirect:/ordenpago/lista";
+	}
+	@RequestMapping("/buscarCosto")
+	@ResponseBody
+	public double buscarCostoPorIdInscripcion (@RequestParam("codigo")String cod)
+	{
+		return serIns.buscarCostoPorId(cod);
+		
 	}
 
 

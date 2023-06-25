@@ -148,7 +148,7 @@
 													<div class="form-group has-feedback col-md-12">
 														<label for="exampleInputEmail1"><b>Monto</b></label><br>		
 														<i class="fas fa-file-signature form-control-feedback2"></i>	
-														<input type="text" class="form-control"  id="idMonto" placeholder="Ingresar monto" name="monto">																										
+														<input readonly type="text" class="form-control"  id="idMonto" name="monto">																										
 												</div>
 											    
 											    <div class="form-group has-feedback col-md-6">	
@@ -274,6 +274,14 @@
 					alertify.error('Cancelado!')
 				}).
 				set('labels', {ok: 'Si', cancel: 'No'});
+		})
+		$(document).on("change","#idInscripciones", function(){
+			let codigoInscripcion = $("#idInscripciones").val();
+			$.get("/ordenpago/buscarCosto?codigo="+codigoInscripcion,function(response){
+				console.log(response);
+				$("#idMonto").val(response);
+			})
+			
 		})
 
 		

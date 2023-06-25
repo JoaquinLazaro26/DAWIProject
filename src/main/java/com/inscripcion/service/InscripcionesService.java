@@ -36,6 +36,9 @@ public class InscripcionesService {
 	public String GenerarCodigo() {
 		return repo.GenerarCodigoInst();
 	}
-	
+	public double buscarCostoPorId(String cod)
+	{
+		return repo.obtenerCostoPorId(cod);
+	}
 	
 }

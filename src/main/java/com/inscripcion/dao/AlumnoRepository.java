@@ -14,7 +14,9 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
 	public List<Alumno> listarPorApellido(String apellid);
 
 	// JEFRY - PARA FICHA INSCRIPCION
-	public List<Alumno> findByNomAlumnoStartingWith(String nom);
+	@Query("SELECT a FROM Alumno a WHERE a.nomAlumno LIKE CONCAT(?1, '%') AND a.estado = 'REGISTRADO'")
+	List<Alumno> findByNomAlumnoStartingWithAndEstadoRegistrado(String nombre);
+
 	
 	
 }
