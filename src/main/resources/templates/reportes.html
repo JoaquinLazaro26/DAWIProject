@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Medicamento</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" th:href="@{/resources/datepicker/bootstrap-datepicker.css}">
+<link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.css}">
+<link rel="stylesheet" th:href="@{/resources/alertifyjs/css/alertify.min.css}"> 
+
+<style>
+	body{
+		background-color: #F2F3F4;
+	}
+	
+	.modal-header, h4, .close {
+		background-color: #286090;
+		color: white !important;
+		text-align: center;
+		font-size: 20px;
+	}
+	.help-block{
+	 color: red;
+	 /*display: none;*/
+	}
+	.form-group.has-error .form-control-label {
+	  color: red;
+	}
+	.form-group.has-error .form-control {
+	  border: 1px solid red;
+	  box-shadow: 0 0 0 0.2rem rgba(250, 16, 0, 0.18);
+	}
+	
+	.alertify .ajs-dialog {
+	    top: 50%;
+	    transform: translateY(-50%);
+	    margin: auto;
+	}
+	
+	.ajs-header{
+		background-color: #286090 !important;
+		color: white !important;
+		/*text-align: center;*/
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.ajs-ok{
+		color: #fff;
+	    background-color: #007bff;
+	    border-color: #007bff;
+	}
+	.ajs-cancel{
+		color: #fff;
+	    background-color: #dc3545;
+	    border-color: #dc3545;
+	}
+	.btn-primary{
+	background-color: #286090 !important;
+	}
+	.dataTables_length, .dataTables_info{
+		display: none;
+	}
+	.modal-lg, .modal-xl {
+		max-width: 900px;
+		max-height: 800px;
+	}
+	
+	.form-control-feedback2 {
+	  margin:1px;
+	  position: absolute;
+	  padding: 10px;
+	  pointer-events: none;
+	  background-color: #e9ecef;
+	  border-style: none;
+	}
+	.form-control-feedback3 {
+	  margin:1px;
+	  position: absolute;
+	  margin-left:225px;
+	  padding: 10px;
+	  pointer-events: none;
+	  background-color: #e9ecef;
+	  border-style: none;
+	}
+	.form-control {
+	  padding-left: 40px!important;
+	}
+	/*.toast-succes{
+		width: 120px;
+	}*/
+</style> 
+
+<script src="https://kit.fontawesome.com/1da5200486.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
+</head>
+<body>
+	
+	<div th:insert="plantilla/UITemplate :: cabecera"></div>
+	<div class="container">
+	
+	<h1 class="text-center mt-4"> Reportes </h1>
+	<hr/>
+	
+	<div class="container">
+		
+			<div class=" mt-2">
+				
+				<h3 class="text-center mt-4"> Reportes de cursos existentes por carrera </h3>
+				
+				<div class="form-group has-feedback col-md-6">	
+						<label for="exampleInputEmail1"><b>Carreras</b></label><br>
+						 <i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
+						 <select class="form-control" id="idCarrera" name="tipo">
+								 <option value=" ">[Seleccione la carrera]</option>
+								<option th:each="data:${carreras}"   
+									th:utext="${data.nomCarrera}"
+									th:value="${data.codigo}"
+								/>
+						</select>
+				 </div>
+				 
+				  <input type="button" id="btn-consultaCar" class="btn btn-success" value="Filtrar"/>		
+				  <input type="button" id="btn-reporteCar" class="btn btn-primary" value="Reporte"/>
+				 
+				 <table class="table table-striped table-bordered mt-5" id="tableCarrera">
+							  <thead>
+							   <tr>
+					                <th>Código Carrera</th>
+					                <th>Nombre Carrera</th>
+					                <th>Nombre Curso</th>
+					                <th>Facultad</th>
+					                <th>Creditos</th>
+					            </tr>
+							  </thead>
+							  <tbody>
+								<tr>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>					      
+							    </tr>  
+							  </tbody>
+				</table>
+						
+			</div>
+			
+			<hr/>
+
+			<div class=" mt-2">
+				
+				<h3 class="text-center mt-4"> Reportes de Alumnos por su estado actual </h3>
+				
+				<div class="form-group has-feedback col-md-12">
+					<label for="exampleInputEmail1"><b>Estado</b></label><br>		
+					<i class="fas fa-file-signature form-control-feedback2"></i>	
+					<select class="form-select form-control" name="estado" id="idEstado">
+						<option value="" selected>[Seleccione]</option>
+						<option value="INSCRITO">INSCRITO</option>
+						<option value="REGISTRADO">REGISTRADO</option>
+					</select>																						
+				</div>
+				 
+				 <input type="button" id="btn-consultaAlu" class="btn btn-danger" value="Filtrar"/>		
+				 <input type="button" id="btn-reporteAlu" class="btn btn-success" value="Reporte"/>
+				 
+				 <table class="table table-striped table-bordered mt-5" id="tableAlumno">
+							  <thead>
+							   <tr>
+					                <th>Código</th>
+					                <th>Estado</th>
+					                <th>Nombre</th>
+					                <th>Apellido</th>
+					                <th>Fecha Nacimiento</th>
+					                <th>Correo</th>
+					                <th>Pais</th>
+					                <th>Ciudad</th>
+					            </tr>
+							  </thead>
+							  <tbody>
+								<tr>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>			
+							      <td></td>		
+							      <td></td>						      
+							    </tr>  
+							  </tbody>
+				</table>
+						
+			</div>
+			
+			<hr/>
+			
+			<div class=" mt-2">
+				
+				<h3 class="text-center mt-4"> Reportes de Boleta por Mes y Año </h3>
+				
+				<div class="form-group has-feedback col-md-12">
+					<label for="exampleInputEmail1"><b>Mes</b></label><br>		
+					<i class="fas fa-file-signature form-control-feedback2"></i>	
+					<input type="number" class="form-control"  id="idMes" name="mes">																										
+				</div>
+				 
+				 <input type="button" id="btn-consultaBol" class="btn btn-primary" value="Filtrar"/>	
+				 <input type="button" id="btn-reporteBol" class="btn btn-danger" value="Reporte"/> 	
+				 
+				 <table class="table table-striped table-bordered mt-5" id="tableBoleta">
+							  <thead>
+							   <tr>
+					                <th>Código Comprobante Pago</th>
+					                <th>Fecha</th>
+					                <th>Monto</th>
+					                <th>Codigo Inscripcion</th>
+					                <th>Estado</th>
+					            </tr>
+							  </thead>
+							  <tbody>
+								<tr>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>
+							      <td></td>					      
+							    </tr>  
+							  </tbody>
+				</table>
+						
+			</div>
+
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js"></script>
+	<script th:src="@{/resources/datepicker/bootstrap-datepicker.js}"></script>     
+	<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+	<script src="https://kit.fontawesome.com/08aaa156fb.js" crossorigin="anonymous"></script>
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="https://kit.fontawesome.com/08aaa156fb.js" crossorigin="anonymous"></script>
+	<script th:src="@{/resources/alertifyjs/alertify.js}"></script>
+	<script th:src="@{/resources/alertifyjs/alertify.min.js}"></script>
+	
+	<script>
+		
+		// CONSULTA CURSO POR CARRERA
+		$(document).on("click","#btn-consultaCar",function(){
+		//alert(123);
+		let carrera;
+		carrera=$("#idCarrera").val();
+		//
+		$("#tableCarrera tbody").empty();
+		$.get("/reportes/listaCursoPorCarreraJSON?codCarrera="+carrera,function(response){
+			console.log(response);
+			//bucle
+			$.each(response,function(index,item){
+				$("#tableCarrera tbody").append(
+					"<tr><td>"+item.codigo+"</td><td>"+item.carrera.nomCarrera+"</td><td>"+item.nombre+
+						"</td><td>"+item.carrera.facultad.nombre+"</td><td>"+item.credito+"</td></tr");
+			
+				})
+			})
+		})	
+		
+	</script>
+	
+	<script>
+		
+		// CONSULTA ALUMNOS POR EL ESTADO
+		$(document).on("click","#btn-consultaAlu",function(){
+		//alert(123);
+		let estado;
+		estado=$("#idEstado").val();
+		//
+		$("#tableAlumno tbody").empty();
+		$.get("/reportes/listaAlumnoEstadoJSON?estado="+estado,function(response){
+			console.log(response);
+			//bucle
+			$.each(response,function(index,item){
+				$("#tableAlumno tbody").append(
+					"<tr><td>"+item.codigo+"</td><td>"+item.estado+"</td><td>"+item.nomAlumno+
+						"</td><td>"+item.apeAlumno+"</td><td>"+item.fecNacimiento+"</td><td>"+item.correoAlu+
+							"</td><td>"+item.ciudad.pais.namePais+"</td><td>"+item.ciudad.nombre+"</td></tr");
+			
+				})
+			})
+		})	
+		
+	</script>
+	
+	<script>
+		
+		// CONSULTA BOLETAS POR EL MES
+		$(document).on("click","#btn-consultaBol",function(){
+		//alert(123);
+		let mes;
+		mes=$("#idMes").val();
+		//
+		$("#tableBoleta tbody").empty();
+			$.get("/reportes/listaBoletaJSON?mes="+mes, function(response){
+			  console.log(response);
+			  //bucle
+			  $.each(response,function(index,item){
+				$("#tableBoleta tbody").append(
+					"<tr><td>"+item.codigo+"</td><td>"+item.fecha+"</td><td>"+item.monto+
+						"</td><td>"+item.inscripciones.codigo+"</td><td>"+item.estado+"</td></tr");
+			
+				})
+			})
+		})	
+	
+	</script>
+	
+	<script>
+		
+		// REPORTE CURSO POR CARRERA
+		$(document).on("click","#btn-reporteCar",function(){
+			let car;
+			car=$("#idCarrera").val();
+			// CODIGO SORPRESA
+			window.location.href = `/reportes/ReporteCursoPorCarreraJSON?codCarrera=${car}`
+			
+		})
+		
+		// REPORTE ALUMNOS POR EL ESTADO
+		$(document).on("click","#btn-reporteAlu",function(){
+			let alu;
+			alu=$("#idEstado").val();
+			// CODIGO SORPRESA
+			window.location.href = `/reportes/ReporteAlumnoEstadoJSON?estado=${alu}`
+			
+		})
+		
+		// REPORTE BOLETAS POR EL MES
+		$(document).on("click","#btn-reporteBol",function(){
+			let bol;
+			bol=$("#idMes").val();
+			// CODIGO SORPRESA
+			window.location.href = `/reportes/ReporteBoletaJSON?mes=${bol}`
+			
+		})
+		
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<script  th:inline="javascript" th:if="${MENSAJE!=null}">
+		//recuperar atributo "MENSAJE"
+		let msg=/*[[${MENSAJE}]]*/
+		
+		toastr.success(msg, toastr.options = {
+			"timeOut": "2000",
+			"positionClass " : " toast-top-right ",
+		});
+	</script>
+	
+	<script>
+		$('#tableUsuario').DataTable();
+		$(function() {
+			$('#usr1').datepicker({
+				'format': 'yyyy-mm-dd',
+				'autoclose': true
+			});
+	
+		});
+		$('#usr1').on('changeDate show', function(e) {
+		    $('#idRegistra').bootstrapValidator('revalidateField', $('#usr1'));
+		});
+
+
+	</script>
+	
+	<script type="text/javascript">    
+	    $(document).ready(function(){     
+	
+	        $('#idRegistra').bootstrapValidator({     
+	        	feedbackIcons: {
+	                valid: 'glyphicon glyphicon-ok',
+	                invalid: 'glyphicon glyphicon-remove',
+	                validating: 'glyphicon glyphicon-refresh'
+	            },
+	        	 fields:{
+	        		 
+	        		 Nombres: {
+	     	    		selector:'#idNombre',   
+	                    validators: {    
+	                        notEmpty: {    
+	                            message: 'Ingrese nombre'    
+	                        }      
+	                    }    
+	                },   
+	                Descripcion: {
+	     	    		selector:'#idDescripcion',       
+	                    validators: {    
+	                        notEmpty: {    
+	                            message: 'Ingrese descripción'    
+	                        }      
+	                    }    
+	                },    
+	                Stock: {
+	     	    		selector:'#idStock',      
+	                    validators: {    
+	                        notEmpty: {    
+	                            message: 'Ingrese stock'    
+	                        },
+	                        regexp: {    
+	                            regexp: /^[0-9]{1,2}$/,    
+	                            message: 'Campo stock hasta dos cifras'    
+	                        },   
+	                    }    
+	                },
+	                precio: {
+	     	    		selector:'#idPrecio',      
+	                    validators: {    
+	                        notEmpty: {    
+	                            message: 'Ingrese precio'    
+	                        },
+	                        regexp: {    
+	                            regexp: /^(\d+|[0-9]+\.\d{1,2})$/,    
+	                            message: 'Campo precio real hasta dos decimales'    
+	                        },   
+	                    }    
+	                },       				
+	                Fecha: {
+	     	    		selector:'#usr1',   
+	                    validators: {    
+	                        notEmpty: {    
+	                            message: 'Seleccione fecha '    
+	                        },
+	                        date: {
+	                            format: 'YYYY-MM-DD',
+	                            message: 'The format is dd/mm/yyyy'
+	                        },
+	                    }    
+	                },
+	                Tipo: {
+	     	    		selector:'#idTipo',   
+	                    validators: {    
+	                        notEmpty: {    
+	                            message: 'Seleccione tipo medicamento'    
+	                        },					
+	                    }    
+	                } 
+	        	 }
+	        })					
+	    });    
+	</script>   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>

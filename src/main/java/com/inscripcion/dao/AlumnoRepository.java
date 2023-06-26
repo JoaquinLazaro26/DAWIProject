@@ -17,6 +17,8 @@ public interface AlumnoRepository extends JpaRepository<Alumno, Integer>{
 	@Query("SELECT a FROM Alumno a WHERE a.nomAlumno LIKE CONCAT(?1, '%') AND a.estado = 'REGISTRADO'")
 	List<Alumno> findByNomAlumnoStartingWithAndEstadoRegistrado(String nombre);
 
-	
+	// JEFRY
+	@Query("select a from Alumno a where a.estado=?1")
+	public List<Alumno> listarPorEstado(String estado);
 	
 }

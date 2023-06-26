@@ -35,4 +35,9 @@ public class OrdenPagoService {
 		return repo.GenerarCodigoPago();
 	}
 	
+	// JEFRY - REPORTE
+	public List<OrdenPago> listarOrdenesPagoPorMesYaño(int mes) {
+		return repo.listarOrdenesPagoPorMesYaño(mes);
+	}
+	
 }

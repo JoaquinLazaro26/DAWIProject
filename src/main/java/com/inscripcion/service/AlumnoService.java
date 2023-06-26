@@ -43,4 +43,10 @@ public class AlumnoService {
 		return repo.findByNomAlumnoStartingWithAndEstadoRegistrado(nom);
 	}
 	
+	// JEFRY - REPORTE
+	//CONSULTAR POR APELLIDO
+	public List<Alumno> listarPorEstado(String estado){
+		return repo.listarPorEstado(estado);
+	}
+	
 }
