@@ -126,10 +126,8 @@
 						<th>ciclo</th>
 						<th>creditos</th>
 						<th>Facultad</th>
-						<!--<th>Stock</th>-->
-						<!--<th>Precio</th>-->
-						<!--<th>Fecha</th>-->
-						<!--<th>Tipo</th>-->
+						<th>Costo</th>
+						
 						<th></th>
 						<th></th>
 					</tr>
@@ -142,6 +140,7 @@
 						<td th:text="${row.ciclos}"></td>
 						<td th:text="${row.creditos}"></td>
 						<td th:text="${row.Facultad.nombre}"></td>	
+						<td th:text="${row.costo}"></td>
 					
 						<td><a class="btn btn-primary btn-editar" data-toggle="modal" data-target="#modalMedicamento"><i
 									class="far fa-edit"></i></a></td>
@@ -194,6 +193,13 @@
 												th:value="${data.codigo}" />
 										</select>
 
+									</div>
+									
+									<div class="form-group has-feedback col-md-4">
+										<label for="exampleInputEmail1"><b>Costo</b></label><br>
+										<i class="fas fa-pencil-alt form-control-feedback2"></i>
+										<input type="text" class="form-control" id="idCosto"
+											placeholder="Ingresar costo" name="costo">
 									</div>
 									
 																
@@ -312,7 +318,7 @@
 				$("#idCiclos").val(response.ciclos);
 				$("#idCreditos").val(response.creditos);
 				$("#idFacultad").val(response.facultad.codigo);
-				
+				$("#idCosto").val(response.costo);
 			})
 		})
 

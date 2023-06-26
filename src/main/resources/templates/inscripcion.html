@@ -140,13 +140,13 @@
 												<div class="form-group has-feedback col-md-4">
 													<label for="exampleInputEmail1"><b>Codigo</b></label><br>	
 													<i class="fas fa-pen-fancy form-control-feedback2"></i>
-													<input type="text" class="form-control" id="idCodigo" placeholder="Ingresar codigo" name="codigo" >	
+													<input type="text" class="form-control" id="idCodigo" placeholder="Ingresar codigo" name="codigo" readonly>	
 												</div>
 												
 												<div class="form-group has-feedback col-md-6">	
 														<label for="exampleInputEmail1"><b>Carrera</b></label><br>
 												        <i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
-													    <select class="form-control" id="idCarrera" name="tipoCarrera">
+													    <select class="form-control" id="idCarrera" name="tipoCarrera" readonly>
 													      <option value=" ">[Seleccione Carrera]</option>
 													      <option th:each="data:${carreras}"   
 													      		th:utext="${data.nomCarrera}"
@@ -158,7 +158,7 @@
 												 <div class="form-group has-feedback col-md-6">	
 														<label for="exampleInputEmail1"><b>Alumno</b></label><br>
 												        <i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
-													    <select class="form-control" id="idAlumno" name="dniSAlumno">
+													    <select class="form-control" id="idAlumno" name="dniSAlumno" readonly>
 													      <option value=" ">[Seleccione Alumno]</option>
 													      <option th:each="data:${alumnos}"   
 													      		th:utext="${data.nomAlumno}"
@@ -171,7 +171,7 @@
 													<label for="exampleInputEmail1" class="text-center"><b>Fecha vencimiento</b></label><br>
 												    <i class="fas fa-calendar-week form-control-feedback2"></i>
 												    <input type="text" style="background-color:#aed6f1" class="form-control" id="usr1" name="fechaIns"
-												    													   placeholder="YYYY-MM-DD" autocomplete="off" >							
+												    													   placeholder="YYYY-MM-DD" autocomplete="off" readonly>							
 											    </div>
 		
 												<div class="form-group has-feedback col-md-12">
@@ -181,7 +181,7 @@
 														  <option value="" selected>[Seleccione]</option>
 														  <option value="CANCELADO">CANCELADO</option>
 														  <option value="PAGADO">PAGADO</option>
-														  <option value="PENDIENTE DE PAGO">PENDIENTE DE PAGO</option>
+														  <option value="PENDIENTE">PENDIENTE</option>
 														</select>																						
 												</div>
 														    

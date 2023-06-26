@@ -47,7 +47,6 @@ public class AlumnoController {
 							  @RequestParam("correoAlu")String correo,
 							  @RequestParam("pais")Integer codPais,
 							  @RequestParam("ciudad")Integer codCiudad,
-							  @RequestParam("estad")String estado,
 							  RedirectAttributes redirect){
 			
 				try {

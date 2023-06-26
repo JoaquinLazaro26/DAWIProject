@@ -58,6 +58,7 @@ public class CarreraController {
 						 @RequestParam("ciclo") String ciclo,
 						 @RequestParam("creditos") int creditos, 
 						 @RequestParam("Facultad") int Facultad,
+						 @RequestParam("costo") int costo,
 						 RedirectAttributes redirect) {
 
 		try {
@@ -69,6 +70,8 @@ public class CarreraController {
 			Facultad tp = new Facultad();
 			tp.setCodigo(Facultad);
 			med.setFacultad(tp);
+			//
+			med.setCosto(costo);
 
 			if(cod==0) {
 				serCarrera.registrar(med);
