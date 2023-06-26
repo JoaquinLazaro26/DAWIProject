@@ -49,4 +49,8 @@ public class AlumnoService {
 		return repo.listarPorEstado(estado);
 	}
 	
+	public void updateEstado(int codigo) {
+		repo.updateEstado(codigo);
+	}
+	
 }

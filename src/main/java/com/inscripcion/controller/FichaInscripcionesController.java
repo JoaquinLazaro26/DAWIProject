@@ -94,6 +94,9 @@ public class FichaInscripcionesController {
 				i.setCodigo(cod);
 				serIns.registrar(i);
 				//
+				serAlu.updateEstado(codAlu);
+				
+				//
 				redirect.addFlashAttribute("MENSAJE","Inscripcion registrada");
 				
 			} catch (Exception e) {
