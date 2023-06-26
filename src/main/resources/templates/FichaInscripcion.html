@@ -56,13 +56,10 @@
 		
 	<h1 class="text-center">FICHA DE INSCRIPCION</h1>
 
-	<div class="modal-body">
-							
-														
-						<hr/>
+	<div class="modal-body">																		
 	
-						<div class="row mt-3">
-							<form method="post" th:action="@{/FichaInscripcion/grabar}">		
+			<div class="row mt-3">
+				<form method="post" th:action="@{/FichaInscripcion/grabar}">		
 				<div class="row">
 					
 					  <div class="col-3">
@@ -83,138 +80,140 @@
 					  </div>			
 
 				</div>	
+			</div>
 				
-				<div class="modal-footer">
+					<div class="modal-footer">
 						<button type="submit" class="btn btn-danger"><i class="fas fa-save"></i> Inscribir</button>			
-				</div>	 
+					</div>	 
 					    
-			</form>
-	<div class="col-lg-6">
-		<fieldset class="reset">
-			<legend class="reset">Consulta Carrera</legend>
-			<div class="row mt-3">
-				<label for="inputEmail3" class="col-sm-2">Carrera:</label>
-				<div class="col-lg-6">
-					<select class="form-control" id="idCarrera" name="tipo">
-						<option value=" ">[Seleccione su carrera]</option>
-						<option th:each="data:${carreras}" th:utext="${data.nomCarrera}" th:value="${data.codigo}"></option>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<button type="button" class="btn btn-info" id="btn-carrera">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</div>
-			<table id="tableCarrera" class="table table-striped mt-4" style="width:100%">
-				<thead>
-					<tr>
-						<th>Código</th>
-						<th>Carrera</th>
-						<th>Ciclos</th>
-						<th>Creditos</th>
-						<th>Facultad</th>
-						<th>Costo</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<button type="button" class="btn btn-warning">
-								<i class="fas fa-user-plus"></i>
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-	</div>
-	<div class="col-lg-1">
-		
-	</div>
-	<div class="col-lg-4">
-		<fieldset class="reset">
-			<legend class="reset">Consulta Cursos</legend>
-			<table id="tableCurso" class="table table-striped mt-4" style="width:100%">
-				<thead>
-					<tr>
-						<th>Código</th>
-						<th>Nombre</th>
-						<th>Carrera</th>
-						<th>Creditos</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-	</div>
+				</form>
 
-	<div class="col-lg-6 mt-3">
-		<fieldset class="reset">
-			<legend class="reset">Consulta Alumno</legend>
-			<div class="row mt-3">
-				<label for="inputEmail3" class="col-sm-2">Alumno:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="txtAlumno">
-				</div>
-				<div class="col-sm-4">
-					<button type="button" class="btn btn-success" id="btn-alumno">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</div>
-			<table id="tableAlumno" class="table table-striped mt-4" style="width:100%">
-				<thead>
-					<tr>
-						<th>Código</th>
-						<th>Nombre</th>
-						<th>Apellido</th>
-						<th>Pais</th>
-						<th>Ciudad</th>
-						<th>Estado</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<button type="button" class="btn btn-secondary">
-								<i class="fas fa-laptop-medical"></i>
-							</button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
-	</div>
-</div>
+				<hr/>
+					<h3>ESCOJA UNA CARRERA</h3>
+					<hr/>
+					<div class="col-lg-6">
+						<fieldset class="reset">
+							<legend class="reset">Consulta Carrera</legend>
+							<div class="row mt-3">
+								<label for="inputEmail3" class="col-sm-2">Carrera:</label>
+								<div class="col-lg-6">
+									<select class="form-control" id="idCarrera" name="tipo">
+										<option value=" ">[Seleccione su carrera]</option>
+										<option th:each="data:${carreras}" th:utext="${data.nomCarrera}" th:value="${data.codigo}"></option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<button type="button" class="btn btn-info" id="btn-carrera">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+							<table id="tableCarrera" class="table table-striped mt-4" style="width:100%">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Carrera</th>
+										<th>Ciclos</th>
+										<th>Creditos</th>
+										<th>Facultad</th>
+										<th>Costo</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<button type="button" class="btn btn-warning">
+												<i class="fas fa-user-plus"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
+					</div>
+					
+					<div class="col-lg-6">
+						<fieldset class="reset">
+							<legend class="reset">Listado de Cursos</legend>
+							<table id="tableCurso" class="table table-striped mt-4" style="width:100%">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Nombre</th>
+										<th>Carrera</th>
+										<th>Creditos</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
+					</div>
+					<hr/>
+					<h3>SELECCIONE EL ALUMNO</h3>
+					<hr/>
+					<div class="col-lg-6">
+						<fieldset class="reset">
+							<legend class="reset">Consulta Alumno</legend>
+							<div class="row mt-3">
+								<label for="inputEmail3" class="col-sm-2">Alumno:</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="txtAlumno">
+								</div>
+								<div class="col-sm-4">
+									<button type="button" class="btn btn-success" id="btn-alumno">
+										<i class="fas fa-search"></i>
+									</button>
+								</div>
+							</div>
+							<table id="tableAlumno" class="table table-striped mt-4" style="width:100%">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Nombre</th>
+										<th>Apellido</th>
+										<th>Pais</th>
+										<th>Ciudad</th>
+										<th>Estado</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<button type="button" class="btn btn-secondary">
+												<i class="fas fa-laptop-medical"></i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</fieldset>
+					</div>
+					
+
 
 						
 				<hr/>		
-						
-			
-				
-				<br/>
 				
 				
 	    </div>
