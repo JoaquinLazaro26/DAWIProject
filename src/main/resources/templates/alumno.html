@@ -105,6 +105,31 @@
 		.btn-primary{
 			border-color: white;
 		}
+		.consultarB{
+			margin-left: 108%;
+   			 margin-top: -37%;
+		}
+		.btn-info{
+			background-color: #286090;
+		}
+		.alertify .ajs-footer .ajs-buttons.ajs-primary .ajs-button {
+   		 margin: 4px;
+   		 border-radius: 40px;
+			}
+			.diseñoH{
+				/*color: #052a49;*/
+				background-color:  #286090;
+				color: white;
+				
+				
+			}
+		
+		.alumnoImg img{
+			margin-left: 20%;
+    width: 60%;
+    margin-bottom: 10%;
+}
+		
 
 		/*.toast-succes{
 		width: 120px;
@@ -116,7 +141,7 @@
 	<div th:insert="plantilla/UITemplate :: cabecera"></div>
 	<div class="container">
 
-		<h3 class="text-center mt-4">LISTA DE ALUMNOS</h3>
+		<h1 class="text-center mt-4 diseñoH">LISTA DE ALUMNOS</h1>
 
 		<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#modalAlumno"
 			id="btn-nuevo">
@@ -125,22 +150,36 @@
 		<div class=" mt-2">
 
 			<!--CONSULTA POR APELLIDO-->
-			<div class="col-lg-6">
+			<!--<div class="col-lg-3">
 				<form id="formBuscarApellido" method="post">
+				<label for="inputEmail3" class="col-sm-1">Apellido:</label>
+				<input type="text" id="consulta-apellido" class="form-control" />
 				<input class="btn btn-primary mt-5" type="submit" id="btn-consulta-apellido" value="Consulta"/>
-				<input type="text" id="consulta-apellido" />
+			</form>
+			</div>-->
+			
+			
+			<div class="row mt-3">
+				<label for="inputEmail3" class="col-sm-1">Apellido:</label>
+				<form id="formBuscarApellido" method="post">
+				
+				<input type="text" id="consulta-apellido" class="form-control" />
+				<div class="consultarB">
+					<input class="btn btn-primary mt-5" type="submit" id="btn-consulta-apellido" value="Consulta"/>
+				</div>
+				
+				
 			</form>
 			</div>
 			
 			
 			
-			<div class="row mt-3">
-				<label for="inputEmail3" class="col-sm-1">Apellido:</label>
-				<div class="col-sm-4">
-					<input type="text" id="consulta-apellido">
-				</div>
-				
-			</div>
+			
+			
+			
+			
+			
+		
 			
 
 
@@ -195,18 +234,25 @@
 							<input type="hidden" id="idCodigo" name="codigo" value="0">
 							<div class="container">
 								<div class="row">
-									<div class="form-group has-feedback col-md-12">
+																		
+									<div class="form-group has-feedback col-md-6">
 										<label for="exampleInputEmail1"><b>Nombre</b></label><br>
 										<i class="fas fa-user  form-control-feedback2"></i>	
 										<input type="text" class="form-control" id="idNombre"
 											placeholder="Ingresar nombre" name="nomAlumno">
 									</div>
-									<div class="form-group has-feedback col-md-12">
+									
+									<div class="alumnoImg">
+										<img alt="Foto Avatar" th:src="@{/resources/img/user-login.png}">
+									</div>
+									
+									<div class="form-group has-feedback col-md-6">
 										<label for="exampleInputEmail1"><b>Apellido</b></label><br>
 										<i class="fas fa-user  form-control-feedback2"></i>	
 										<input type="text" class="form-control" id="idApellido"
 											placeholder="Ingresar Apellido" name="apeAlumno">
 									</div>
+									<br>
 
 									<div class="form-group has-feedback col-md-4">
 										<label for="exampleInputEmail1" class="text-center"><b>Fecha
@@ -415,7 +461,7 @@
 	                        },
 	                        date: {
 	                            format: 'YYYY-MM-DD',
-	                            message: 'El formato es dd/mm/yyyy'
+	                            message: 'El formato es YYYY-MM-DD'
 	                        },
 	                    }    
 	                },
