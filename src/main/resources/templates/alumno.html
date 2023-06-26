@@ -99,6 +99,12 @@
 		.form-control {
 			padding-left: 40px !important;
 		}
+		.modal-body{
+			background-color: #286090;
+		}
+		.btn-primary{
+			border-color: white;
+		}
 
 		/*.toast-succes{
 		width: 120px;
@@ -119,11 +125,23 @@
 		<div class=" mt-2">
 
 			<!--CONSULTA POR APELLIDO-->
-			<form id="formBuscarApellido" method="post">
+			<div class="col-lg-6">
+				<form id="formBuscarApellido" method="post">
+				<input class="btn btn-primary mt-5" type="submit" id="btn-consulta-apellido" value="Consulta"/>
 				<input type="text" id="consulta-apellido" />
-				<input type="submit" id="btn-consulta-apellido" value="Consulta"/>
-				<br>
 			</form>
+			</div>
+			
+			
+			
+			<div class="row mt-3">
+				<label for="inputEmail3" class="col-sm-1">Apellido:</label>
+				<div class="col-sm-4">
+					<input type="text" id="consulta-apellido">
+				</div>
+				
+			</div>
+			
 
 
 
@@ -138,6 +156,7 @@
 						<th>Correo</th>
 						<th>País</th>
 						<th>Ciudad</th>
+						<th>Estado</th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -151,6 +170,7 @@
 						<td th:text="${row.correoAlu}"></td>
 						<td th:text="${row.pais.namePais}"></td>
 						<td th:text="${row.ciudad.nombre}"></td>
+						<td th:text="${row.estado}"></td>
 						<td><a class="btn btn-info btn-editar" data-toggle="modal" data-target="#modalAlumno"><i
 									class="far fa-edit"></i></a></td>
 						<td><a class="btn btn-danger btn-eliminar"><i class="far fa-trash-alt"></i></a></td>
@@ -167,6 +187,8 @@
 				<div class="modal-content">
 					<div class="modal-header bg-blue-darker">
 						<h4 class="modal-title text-white">ALUMNO</h4>
+							<button type="button" id="btn-cerrar" class="btn btn-danger" data-dismiss="modal"><i
+										class="fas fa-times-circle" ></i></button>
 					</div>
 					<div class="modal-body">
 						<form method="POST" id="idRegistra" action="/alumno/registrar">
@@ -175,13 +197,13 @@
 								<div class="row">
 									<div class="form-group has-feedback col-md-12">
 										<label for="exampleInputEmail1"><b>Nombre</b></label><br>
-										<i class="fas fa-file-signature form-control-feedback2"></i>
+										<i class="fas fa-user  form-control-feedback2"></i>	
 										<input type="text" class="form-control" id="idNombre"
 											placeholder="Ingresar nombre" name="nomAlumno">
 									</div>
 									<div class="form-group has-feedback col-md-12">
 										<label for="exampleInputEmail1"><b>Apellido</b></label><br>
-										<i class="fas fa-file-signature form-control-feedback2"></i>
+										<i class="fas fa-user  form-control-feedback2"></i>	
 										<input type="text" class="form-control" id="idApellido"
 											placeholder="Ingresar Apellido" name="apeAlumno">
 									</div>
@@ -198,14 +220,21 @@
 
 									<div class="form-group has-feedback col-md-12">
 										<label for="exampleInputEmail1"><b>Correo</b></label><br>
-										<i class="fas fa-file-signature form-control-feedback2"></i>
+										<i class="fas fa-envelope form-control-feedback2"></i>
 										<input type="text" class="form-control" id="idCorreo"
 											placeholder="Ingresar nombre" name="correoAlu">
+									</div>
+									
+									<div class="form-group has-feedback col-md-12">
+										<label for="exampleInputEstado"><b>Estado</b></label><br>
+										<i class="fas fa-battery-full form-control-feedback2"></i>
+										<input type="text" class="form-control" id="idEstado"
+											placeholder="Ingresar estado" name="estad">
 									</div>
 
 									<div class="form-group has-feedback col-md-6">
 										<label for="exampleInputEmail1"><b>País</b></label><br>
-										<i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
+										<i class="fas fa-flag form-control-feedback2"></i>
 										<select class="form-control" id="idPais" name="pais">
 											<option value=" ">[Seleccione País]</option>
 											<option th:each="data:${listaPaises}" th:utext="${data.namePais}"
@@ -215,7 +244,7 @@
 
 									<div class="form-group has-feedback col-md-6">
 										<label for="exampleInputEmail1"><b>Ciudad</b></label><br>
-										<i class="fas fa-prescription-bottle-alt form-control-feedback2"></i>
+										<i class="fas fa-home form-control-feedback2"></i>
 										<select class="form-control" id="idCiudad" name="ciudad">
 											<option value=" ">[Seleccione Ciudad]</option>
 										</select>
@@ -228,8 +257,8 @@
 							<div class="col-md-12 text-center mt-4">
 								<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i>
 									Registrar</button>
-								<button type="button" id="btn-cerrar" class="btn btn-danger" data-dismiss="modal"><i
-										class="fas fa-undo-alt"></i> Cancelar</button>
+								<!--<button type="button" id="btn-cerrar" class="btn btn-danger" data-dismiss="modal"><i
+										class="fas fa-undo-alt"></i> Cancelar</button>-->
 							</div>
 						</form>
 
@@ -291,6 +320,7 @@
 				$("#idFecha").val(response.fecNacimiento);
 				$("#idCorreo").val(response.correoAlu);
 				$("#idPais").val(response.pais.codPais);
+				$("#idEstado").val(response.estado);
 				
 				
 				codigoCiudad=response.ciudad.codigo;
@@ -439,6 +469,7 @@
 								'<td>' + item.correoAlu + '</td>' +
 								'<td>' + item.pais.namePais + '</td>' +
 								'<td>' + item.pais.namePais + '</td>' +
+								'<td>' + item.estado + '</td>' +
 								'<td><a class="btn btn-info btn-editar" data-toggle="modal" data-target="#modalAlumno"><i class="far fa-edit"></i></a></td>' +
 								'<td><a class="btn btn-danger btn-eliminar"><i class="far fa-trash-alt"></i></a></td>' +
 								'</tr>');
